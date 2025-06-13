@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sherlock Holmes - London's Top Consulting Detective</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&family=DM+Serif+Display:wght@400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=EB+Garamond&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Typography Enhancements */
+        body {
+            font-family: "Spectral", serif;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
+            color: #FAF8F0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: "Spectral", serif;
+            letter-spacing: 0.5px;
+            font-weight: 400;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* Improve paragraph spacing */
+        .about-content p,
+        .service-card p,
+        .testimonial-text,
+        .footer-section p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Add spacing in navigation */
+        .nav-menu a {
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Input and Textarea readability */
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            font-size: 1rem;
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+        }
+
+        /* CTA Button Font */
+        .cta-button {
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+
+        body {
+            font-family: 'Lora', serif;
+            line-height: 1.6;
+            color: #FAF8F0;
+            background-color: #1F1F1F;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(31, 31, 31, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(31, 31, 31, 0.98);
+            box-shadow: 0 2px 20px rgba(139, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #B08D57;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #FAF8F0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, #8B0000, #B08D57);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: #B08D57;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #FAF8F0;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero-text,
+        .hero-bg {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .hero-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-bg.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('hero.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(139, 0, 0, 0.1), transparent);
+            animation: fogMovement 8s ease-in-out infinite alternate;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+        }
+
+        .hero-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            /* Keep Sherlock on the right side of image */
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        .hero-text {
+            max-width: 600px;
+            color: white;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-bg {
+            animation: slideInRight 1.2s ease forwards;
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+
+        @keyframes fogMovement {
+            0% {
+                opacity: 0.3;
+                transform: translateX(-20px);
+            }
+
+            100% {
+                opacity: 0.6;
+                transform: translateX(20px);
+            }
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 10vw;
+            height: 100%;
+        }
+
+        .hero-text {
+            max-width: 600px;
+            color: white;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 0.3s;
+            opacity: 0;
+            /* required for animation */
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+            color: #FAF8F0;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #FAF8F0;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+            opacity: 1;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #8B0000, #B91C1C);
+            color: #FAF8F0;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.6);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #B08D57;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(135deg, #8B0000, #B08D57);
+            margin: 1rem auto;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, rgba(31, 31, 31, 0.9), rgba(47, 47, 47, 0.9));
+            border-radius: 10px;
+            padding: 4rem;
+            margin: 3rem 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(31, 31, 31, 0.9), rgba(47, 47, 47, 0.9));
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(176, 141, 87, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #8B0000, #B08D57);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(139, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #B08D57;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            background: rgba(176, 141, 87, 0.1);
+            border-radius: 50%;
+            border: 2px solid rgba(176, 141, 87, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: rgba(176, 141, 87, 0.2);
+            border-color: #B08D57;
+            transform: scale(1.1);
+        }
+
+        .service-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: #B08D57;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #FAF8F0;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: linear-gradient(135deg, rgba(31, 31, 31, 0.9), rgba(47, 47, 47, 0.9));
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+            border-radius: 10px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: rgba(139, 0, 0, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #B08D57;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial:hover {
+            background: rgba(139, 0, 0, 0.2);
+            transform: translateX(10px);
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #B08D57;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, rgba(31, 31, 31, 0.9), rgba(47, 47, 47, 0.9));
+            padding: 4rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #B08D57;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(31, 31, 31, 0.8);
+            border: 1px solid rgba(176, 141, 87, 0.5);
+            border-radius: 5px;
+            color: #FAF8F0;
+            font-family: 'Lora', serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #B08D57;
+            box-shadow: 0 0 10px rgba(176, 141, 87, 0.3);
+        }
+
+        .contact-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-style: italic;
+            color: #B08D57;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Magnifying Glass Animation */
+        .magnifying-glass {
+            position: fixed;
+            top: 20%;
+            right: 10%;
+            font-size: 2rem;
+            color: rgba(176, 141, 87, 0.3);
+            animation: magnifyFloat 6s ease-in-out infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes magnifyFloat {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(10px, -10px) rotate(5deg);
+            }
+
+            50% {
+                transform: translate(-5px, -20px) rotate(-5deg);
+            }
+
+            75% {
+                transform: translate(-10px, -5px) rotate(3deg);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, rgba(31, 31, 31, 0.95), rgba(47, 47, 47, 0.95));
+            padding: 3rem 2rem 2rem;
+            margin-top: 3rem;
+            border-top: 3px solid #B08D57;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: #B08D57;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #FAF8F0;
+            text-decoration: none;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #B08D57;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(176, 141, 87, 0.3);
+            color: rgba(250, 248, 240, 0.7);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero {
+            background-image: url('hero_2.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            /* Dark overlay */
+            z-index: -1;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            transform: scale(1.05);
+            /* Slight zoom to hide black edges */
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .about,
+            .contact {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">S. Holmes</a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating Magnifying Glass -->
+    <div class="magnifying-glass">🔍</div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <!--div class="hero-bg">
+                <img src="hero_2.png" alt="Foggy London" />
+            </div-->
+            <div class="hero-text">
+                <h1>London's Top Consulting Detective</h1>
+                <p class="hero-subtitle">
+                    Solving the unsolvable. From missing persons to cold cases — no mystery too complex.
+                </p>
+                <a href="#contact" class="cta-button">Request Investigation</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title">The Legacy of Sherlock Holmes</h2>
+        <div class="about">
+            <div class="about-content fade-in">
+                <p>With a mind sharper than any blade and logic that defies emotion, Sherlock Holmes has solved hundreds
+                    of cases across England and beyond. From the foggy alleys of London to high-profile international
+                    affairs, his methods remain unmatched.</p>
+                <br>
+                <p>Assisted by Dr. John Watson and often consulted by Scotland Yard, Holmes' agency is the last resort
+                    for the most baffling mysteries.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <h2 class="section-title">What We Investigate</h2>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                        <path d="M22 2L2 22" />
+                    </svg>
+                </div>
+                <h3>Missing Persons</h3>
+                <p>We trace the untraceable. Loved ones gone missing? We follow the faintest clues.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="21 21l-4.35-4.35" />
+                        <circle cx="11" cy="11" r="3" />
+                    </svg>
+                </div>
+                <h3>Mystery Cases</h3>
+                <p>Strange happenings? Cryptic clues? Unexplainable events? Let Holmes decode the truth.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14,2 14,8 20,8" />
+                        <path d="M12 18v-6" />
+                        <path d="M9 15h6" />
+                        <circle cx="12" cy="12" r="1" />
+                    </svg>
+                </div>
+                <h3>Cold Cases</h3>
+                <p>Reopen forgotten files. Justice delayed is not justice denied.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        <path d="M12 12h.01" />
+                    </svg>
+                </div>
+                <h3>Private Consultation</h3>
+                <p>Need discreet advice or second opinions? Book a private session with Sherlock Holmes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials">
+        <div class="testimonials">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial fade-in">
+                    <div class="testimonial-author">Dr. John Watson</div>
+                    <div class="testimonial-text">"I've seen Sherlock untangle puzzles that baffle the finest minds in
+                        Britain. His methods are eccentric, but always effective."</div>
+                </div>
+                <div class="testimonial fade-in">
+                    <div class="testimonial-author">Inspector Lestrade, Scotland Yard</div>
+                    <div class="testimonial-text">"Holmes isn't easy to work with—but if I'm ever in a bind, he's the
+                        first I call."</div>
+                </div>
+                <div class="testimonial fade-in">
+                    <div class="testimonial-author">Lady Eva Brackwell</div>
+                    <div class="testimonial-text">"Sherlock restored my honor and uncovered the blackmailer who had
+                        threatened me for years."</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="contact">
+            <h2 class="section-title">Book a Case Consultation</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="caseSummary">Case Summary</label>
+                    <textarea id="caseSummary" name="caseSummary" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contact">Preferred Contact</label>
+                    <input type="text" id="contact" name="contact" placeholder="Email or Phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="urgency">Urgency Level</label>
+                    <select id="urgency" name="urgency" required>
+                        <option value="">Select urgency level</option>
+                        <option value="low">Low - Can wait a week</option>
+                        <option value="medium">Medium - Within 3 days</option>
+                        <option value="high">High - Urgent, within 24 hours</option>
+                        <option value="critical">Critical - Immediate attention needed</option>
+                    </select>
+                </div>
+                <div style="text-align: center;">
+                    <button type="submit" class="cta-button">Submit Case Brief</button>
+                </div>
+            </form>
+            <div class="contact-note">
+                Discretion assured. Your identity and case details remain confidential.
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sherlock Holmes Agency</h3>
+                <p>London's premier consulting detective, solving the impossible since 1881. From the shadows of Baker
+                    Street to the corridors of power, no mystery remains unsolved.</p>
+                <div class="social-links">
+                    <a href="#">📧</a>
+                    <a href="#">📞</a>
+                    <a href="#">🏠</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Holmes</a></li>
+                    <li><a href="#services">Investigation Services</a></li>
+                    <li><a href="#testimonials">Client Reviews</a></li>
+                    <li><a href="#contact">Book Consultation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>📍 221B Baker Street<br>London, England</p>
+                <p>📞 +44 20 7946 0958</p>
+                <p>📧 cases@sherlockholmes.co.uk</p>
+                <p>🕒 Available 24/7 for urgent cases</p>
+            </div>
+            <div class="footer-section">
+                <h3>Areas of Expertise</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Criminal Investigation</a></li>
+                    <li><a href="#">Missing Persons</a></li>
+                    <li><a href="#">Corporate Espionage</a></li>
+                    <li><a href="#">Insurance Fraud</a></li>
+                    <li><a href="#">Historical Mysteries</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sherlock Holmes Consulting Detective Agency. All rights reserved. | Confidentiality
+                Guaranteed</p>
+        </div>
+    </footer>
+
+    <script>
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.hero-text, .hero-bg').forEach(el => {
+            heroObserver.observe(el);
+        });
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile navigation toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for all navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Set initial state and observe fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            fadeInObserver.observe(el);
+        });
+
+        // Form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Case brief submitted! Holmes will review your case within 24 hours.');
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        });
+    </script>
+</body>
+
+</html>
